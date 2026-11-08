@@ -39,7 +39,6 @@ std::string readAll(const std::filesystem::path& file) {
 }
 ```
 
-
 ## Exercise 3
 
 Fixed:
@@ -52,3 +51,24 @@ std::filesystem::path headFile(const std::filesystem::path& root) {
     return metadataDirectory(root) / "HEAD";
 }
 ```
+
+
+## Exercise 4 Fill in the blanks
+
+Complete the missing lines so the function creates missing folders, writes the text, and reports failure.
+
+```cpp
+bool save(const std::filesystem::path& file, const std::string& text) {
+    if (!file.parent_path().empty()) {                       // (1) only if there is a parent folder
+        std::filesystem::create_directories(file.parent_path());   // (2) make all missing folders
+    }
+    std::ofstream output(file);
+    if (!output) {                                       // (3) did opening fail?
+        return false;
+    }
+    output << text;
+    return static_cast<bool>(output);                              // (4) true only if writing worked
+}
+```
+
+---
