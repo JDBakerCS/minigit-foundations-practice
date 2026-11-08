@@ -22,3 +22,20 @@ c: notes.txt
 d: docs
 e: 1
 f: .txt
+
+
+## Exercise 2
+
+`getline` removes the newline from each line, so joining the lines gives ab. Reading the whole stream with rdbuf() keeps the newlines example:
+
+```C++
+#include <fstream>
+#include <sstream>
+
+std::string readAll(const std::filesystem::path& file) {
+    std::ifstream input(file);
+    std::ostringstream contents;
+    contents << input.rdbuf();
+    return contents.str();
+}
+```
