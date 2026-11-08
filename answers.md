@@ -14,7 +14,7 @@ e: checks whether the parent path is empty not whether the file exists.
 
 f: returns the first extension including the dot
 
-ex1_paths.cpp ran: 
+ex1_paths.cpp ran:
 
 a: repo/.minigit/HEAD
 b: /HEAD
@@ -22,7 +22,6 @@ c: notes.txt
 d: docs
 e: 1
 f: .txt
-
 
 ## Exercise 2
 
@@ -37,5 +36,19 @@ std::string readAll(const std::filesystem::path& file) {
     std::ostringstream contents;
     contents << input.rdbuf();
     return contents.str();
+}
+```
+
+
+## Exercise 3
+
+Fixed:
+
+```C++
+std::filesystem::path metadataDirectory(const std::filesystem::path& root) {
+    return root / ".minigit";
+}
+std::filesystem::path headFile(const std::filesystem::path& root) {
+    return metadataDirectory(root) / "HEAD";
 }
 ```
